@@ -4,7 +4,7 @@
 # ~/steamcmd +login anonymous +force_install_dir /var/www/gameservers/valheim/ +app_update 896660 validate +exit
 # echo 1 > /var/www/gameservers/valheim/server_exit.drp
 
-v=$(pidof valheim*)
+v=$(pgrep -f valheim_server.x86_64)
 worldfiles=/home/steamuser/.config/unity3d/IronGate/Valheim/worlds
 startscript=/var/www/gameservers/valheim/start_server.sh
 log=/var/www/html/downloads/valheimserver.log
@@ -19,7 +19,7 @@ if [[ ! -z "$v"  ]];
         sleep .5
       done
     echo $timestamp "server PID no longer exists"
-    zip -r /var/www/gameservers/backup/$timestamp'_worldname'.zip /home/steamuser/.config/unity3d/IronGate/Valheim/worlds;
+    zip -r /var/www/gameservers/backup/$timestamp'_assgard'.zip /home/steamuser/.config/unity3d/IronGate/Valheim/worlds;
     if [[ $? -eq 0 ]];
       then
         echo $timestamp "world backup completed"
